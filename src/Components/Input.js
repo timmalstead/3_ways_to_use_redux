@@ -7,8 +7,10 @@ const UnconectedInput = ({ addArticle, inputAndButtonStyle }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    addArticle({ id: Date.now(), title })
-    changeTitle("")
+    if (title) {
+      addArticle({ id: Date.now(), title })
+      changeTitle("")
+    }
   }
 
   return (

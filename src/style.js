@@ -3,6 +3,7 @@ const color = "red"
 const mainStyle = {
   color: `${color}`,
   fontFamily: "monospace",
+  fontSize: "1.15em",
   textTransform: "uppercase",
   width: "100vw",
   height: "100vh",
