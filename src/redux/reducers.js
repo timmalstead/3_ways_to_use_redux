@@ -13,9 +13,11 @@ const rootReducer = (state = initialState, action) => {
     case DELETE_ARTICLE:
       return {
         ...state,
-        articles: state.articles.filter(
-          (article) => article !== action.payload
-        ),
+        articles: [
+          ...state.articles.filter(
+            (article) => article.id !== action.payload.id
+          ),
+        ],
       }
 
     case SWITCH_VISIBLE:
@@ -27,21 +29,3 @@ const rootReducer = (state = initialState, action) => {
 }
 
 export default rootReducer
-
-// const rootReducer = (state = initialState, action) => {
-//   if (action.type === ADD_ARTICLE) {
-//     return { ...state, articles: state.articles.concat(action.payload) }
-//   }
-
-//   if (action.type === DELETE_ARTICLE) {
-//     return {
-//       ...state,
-//       articles: state.articles.filter((article) => article !== action.payload),
-//     }
-//   }
-
-//   if (action.type === SWITCH_VISIBLE) {
-//     return { ...state, visible: !state.visible }
-//   }
-//   return state
-// }
