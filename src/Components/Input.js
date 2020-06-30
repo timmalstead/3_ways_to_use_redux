@@ -1,14 +1,14 @@
 import React, { useState } from "react"
-import { connect } from "react-redux"
-import { addArticle } from "../redux/actions"
+import useReduxDispatch from "../redux/actions"
 
-const UnconectedInput = ({ addArticle, inputAndButtonStyle }) => {
+const Input = ({ inputAndButtonStyle }) => {
+  const { addArticleToReduxState } = useReduxDispatch()
   const [title, changeTitle] = useState("")
 
   const handleSubmit = (e) => {
     e.preventDefault()
     if (title) {
-      addArticle({ id: Date.now(), title })
+      addArticleToReduxState(title)
       changeTitle("")
     }
   }
@@ -28,9 +28,5 @@ const UnconectedInput = ({ addArticle, inputAndButtonStyle }) => {
     </form>
   )
 }
-
-const Input = connect(null, (dispatch) => ({
-  addArticle: (article) => dispatch(addArticle(article)),
-}))(UnconectedInput)
 
 export default Input

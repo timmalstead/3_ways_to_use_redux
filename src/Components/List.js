@@ -1,29 +1,26 @@
 import React, { Fragment } from "react"
-import { connect } from "react-redux"
-import { deleteArticle } from "../redux/actions"
+import useReduxDispatch from "../redux/actions"
+import useReduxState from "../redux/selectors"
 
-const unConnectedList = ({ articles, deleteArticle, inputAndButtonStyle }) => (
-  <ul>
-    {articles.map((article) => (
-      <Fragment key={article.id}>
-        <span>{article.title}</span>
-        <button
-          style={inputAndButtonStyle}
-          onClick={() => deleteArticle({ id: article.id })}
-        >
-          x
-        </button>
-      </Fragment>
-    ))}
-  </ul>
-)
+const List = ({ inputAndButtonStyle }) => {
+  const { articles } = useReduxState()
+  const { deleteArticleFromReduxState } = useReduxDispatch()
 
-const mapStateToProps = (state) => ({ articles: state.articles })
-
-const mapDispatchToProps = (dispatch) => ({
-  deleteArticle: (article) => dispatch(deleteArticle(article)),
-})
-
-const List = connect(mapStateToProps, mapDispatchToProps)(unConnectedList)
+  return (
+    <ul>
+      {articles.map((article) => (
+        <Fragment key={article.id}>
+          <span>{article.title}</span>
+          <button
+            style={inputAndButtonStyle}
+            onClick={() => deleteArticleFromReduxState(article.id)}
+          >
+            x
+          </button>
+        </Fragment>
+      ))}
+    </ul>
+  )
+}
 
 export default List
