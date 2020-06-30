@@ -1,7 +1,12 @@
-import { useSelector } from "react-redux"
+import { useState, useEffect } from "react"
+import { getState, subscribe } from "./store"
 
 const useReduxState = () => {
-  const articles = useSelector((state) => state.articles)
+  const [articles, changeArticles] = useState([])
+
+  useEffect(() => subscribe(() => changeArticles(getState().articles)), [
+    getState().articles,
+  ])
 
   return { articles }
 }

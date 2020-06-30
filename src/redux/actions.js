@@ -1,13 +1,11 @@
 import { ADD_ARTICLE, DELETE_ARTICLE } from "./constants"
-import { useDispatch } from "react-redux"
+import { dispatch } from "./store"
 
 const addArticle = (payload) => ({ type: ADD_ARTICLE, payload })
 
 const deleteArticle = (payload) => ({ type: DELETE_ARTICLE, payload })
 
 const useReduxDispatch = () => {
-  const dispatch = useDispatch()
-
   const addArticleToReduxState = (title) =>
     dispatch(addArticle({ id: Date.now(), title }))
 
