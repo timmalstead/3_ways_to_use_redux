@@ -1,8 +1,7 @@
-import { ADD_ARTICLE, DELETE_ARTICLE, SWITCH_VISIBLE } from "./constants"
+import { ADD_ARTICLE, DELETE_ARTICLE } from "./constants"
 
 const initialState = {
   articles: [],
-  visible: true,
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -19,9 +18,6 @@ const rootReducer = (state = initialState, action) => {
           ),
         ],
       }
-
-    case SWITCH_VISIBLE:
-      return { ...state, visible: !state.visible }
 
     default:
       return state
